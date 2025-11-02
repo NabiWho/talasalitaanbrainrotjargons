@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00, #ff00ff, #00ffff);
+    background-size: 400% 400%;
+    animation: memeGradient 5s ease infinite;
+    color: black;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+@keyframes memeGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.alphabet {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.letter {
+    font-size: 1.5em;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    cursor: pointer;
+}
+
+.letter.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.header {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.header h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px #ff0000, 4px 4px 0px #00ff00, 6px 6px 0px #0000ff;
+    transform: rotate(-2deg);
+}
+
+.header p {
+    font-size: 1.5em;
+    line-height: 1.5;
+    text-shadow: 1px 1px 0px #ffff00;
+}
+
+.header button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.header button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.search-bar {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin: -20px -20px 20px -20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 10;
+}
+
+.search-bar.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.search-bar button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.search-bar button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.suggestion-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.word-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.letter-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.words {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.word {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: rotate(1deg);
+    position: relative;
+}
+
+.pronunciation {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.listen-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.listen-btn:hover {
+    transform: scale(1.2);
+}
+
+.word:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.definition {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    margin-top: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.definition.expanded {
+    max-height: 300px;
+    opacity: 1;
+}
